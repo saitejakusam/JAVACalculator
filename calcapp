@@ -1,0 +1,348 @@
+import javax.swing.*;
+import java.awt.*;
+import java.util.*;
+import java.io.IOException;
+import java.lang.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.*;
+public class calcapp extends JFrame  {
+	String s;
+	double a1;
+	double b1;
+	String z;
+  public calcapp() {
+	 FlowLayout layout = new FlowLayout();
+	 this.setLayout(layout);
+    JFrame f = new JFrame("Calculator app"); 
+    JPanel p=new JPanel();
+    f.setSize(480,250); 
+    f.setVisible(true);
+    f.add(p);
+    p.setBackground(Color.cyan);
+    JTextField T1 = new JTextField(45);
+    JTextField T2 = new JTextField(45);
+    JTextField T3 = new JTextField(45);
+    JLabel L1 = new JLabel("FIRST NUM : ");  
+    JLabel L2 = new JLabel("SECOND NUM : ");
+    JLabel L3 = new JLabel("Result is : ");
+    p.add(L1);
+    p.add(T1);
+    JButton B1 = new JButton("+"); 
+    JButton B2 = new JButton("-");
+    JButton B3 = new JButton("*");
+    JButton B4 = new JButton("/");
+    JButton B5 = new JButton("1"); 
+    JButton B6 = new JButton("2");
+    JButton B7 = new JButton("3");
+    JButton B8 = new JButton("4");
+    JButton B9 = new JButton("5");
+    JButton B10 = new JButton("6");
+    JButton B11= new JButton("7");
+    JButton B12 = new JButton("8");
+    JButton B13= new JButton("9");
+    JButton B14 = new JButton("0");
+    JButton B15 = new JButton("=");
+    JButton B16 = new JButton("sqr");
+    JButton B17 = new JButton("sqrt");
+    JButton B18 = new JButton("^");
+    JButton B19 = new JButton("C");
+    JButton B20 = new JButton(".");
+    B1.setPreferredSize(new Dimension(80, 30));
+    B2.setPreferredSize(new Dimension(80, 30));
+    B3.setPreferredSize(new Dimension(80, 30));
+    B4.setPreferredSize(new Dimension(80, 30));
+    B15.setPreferredSize(new Dimension(80, 30));
+    B2.setBackground(Color.RED);
+    B1.setBackground(Color.BLUE);
+    B3.setBackground(Color.ORANGE);
+    B4.setBackground(Color.PINK);
+    B15.setBackground(Color.BLACK);
+    B15.setForeground(Color.white);
+    B2.setForeground(Color.white);
+    B1.setForeground(Color.white);
+    B3.setForeground(Color.white);
+    B4.setForeground(Color.white); 
+    B19.setBackground(Color.RED);
+    B18.setBackground(Color.BLUE);
+    B17.setBackground(Color.PINK);
+    B16.setBackground(Color.BLACK);
+    B20.setBackground(Color.orange);
+    B16.setForeground(Color.white);
+    B17.setForeground(Color.white);
+    B18.setForeground(Color.white);
+    B20.setForeground(Color.white);
+    B19.setForeground(Color.white);
+    B16.setPreferredSize(new Dimension(80, 30));
+    B17.setPreferredSize(new Dimension(80, 30));
+    B18.setPreferredSize(new Dimension(80, 30));
+    B19.setPreferredSize(new Dimension(80, 30));
+    B20.setPreferredSize(new Dimension(80, 30));
+    p.add(B5);
+    p.add(B6);
+    p.add(B7);
+    p.add(B8);
+    p.add(B9);
+    p.add(B10);
+    p.add(B11);
+    p.add(B12);
+    p.add(B13);
+    p.add(B14);
+    p.add(B1);
+    p.add(B2);
+    p.add(B3);
+    p.add(B4);
+    p.add(B15);
+    p.add(B20);
+    p.add(B16);
+    p.add(B17);
+    p.add(B18);
+    p.add(B19);
+   // p.add(L3);
+//    p.add(T3);
+    B1.addActionListener(new ActionListener(){  
+        public void actionPerformed(ActionEvent e){ 
+        	
+        	if (e.getSource() == B1)  
+            {  
+                T1.setText(T1.getText()+"+");  
+            }  ;
+        }
+        }); 
+    B2.addActionListener(new ActionListener(){  
+        public void actionPerformed(ActionEvent e){  
+        	if (e.getSource() == B2)  
+            {  
+                T1.setText(T1.getText()+"-");  
+            }  ;  
+        }  
+        }); 
+    B3.addActionListener(new ActionListener(){  
+        public void actionPerformed(ActionEvent e){  
+        	if (e.getSource() == B3)  
+            {  
+                 
+                T1.setText(T1.getText()+"*");  
+            }  ;  
+        }  
+        }); 
+    
+    B4.addActionListener(new ActionListener(){  
+        public void actionPerformed(ActionEvent e){  
+        	if (e.getSource() == B4)  
+            {  
+                T1.setText(T1.getText()+ "/");  
+            }  ;  
+        }  
+        }); 
+    B20.addActionListener(new ActionListener(){  
+        public void actionPerformed(ActionEvent e){  
+        	if (e.getSource() == B20)  
+            {  
+                T1.setText(T1.getText()+ ".");  
+            }  ;  
+        }  
+        }); 
+    B19.addActionListener(new ActionListener(){  
+        public void actionPerformed(ActionEvent e){  
+        	if (e.getSource() == B19)  
+            {  
+                T1.setText("");  
+            }  ;  
+        }  
+        }); 
+    B16.addActionListener(new ActionListener(){  
+        public void actionPerformed(ActionEvent e){  
+        	if (e.getSource() == B16)  
+            {  
+        		int n1=Integer.parseInt(T1.getText());
+        		int sqr=n1*n1;
+                T1.setText(""+sqr);  
+            }  ;  
+        }  
+        }); 
+    
+    B18.addActionListener(new ActionListener(){  
+        public void actionPerformed(ActionEvent e){  
+        	if (e.getSource() == B18)  
+            {  
+        		
+                T1.setText(T1.getText()+"^");  
+            }  ;  
+        }  
+        }); 
+    
+    
+    B17.addActionListener(new ActionListener(){  
+        public void actionPerformed(ActionEvent e){  
+        	if (e.getSource() == B17)  
+            {  
+        		int n1=Integer.parseInt(T1.getText());
+        		double sqrt=Math.sqrt(n1);
+                T1.setText(""+sqrt);  
+            }  ;  
+        }  
+        }); 
+    
+    B15.addActionListener(new ActionListener(){  
+        public void actionPerformed(ActionEvent e){  
+        	if (e.getSource() == B15)  
+            {  
+        		s=T1.getText();
+        	    int k=s.length();
+        	    for(int i=0;i<k;i++) {
+        	    	if(s.charAt(i)=='+'||s.charAt(i)=='-'||s.charAt(i)=='*'||s.charAt(i)=='/'||s.charAt(i)=='^'||s.charAt(i)=='q') {
+        	    		for(int j=0;j<i;j++) {
+        	    			String h="0";
+        	    			String d=s.substring(0,j+1);
+        	    			h=h+d;
+        	    			z=s.substring(i+1,k);
+        	    			a1=Double.parseDouble(h);
+        	 
+        	    		}
+        	    		for(int l=i+1;l<k;l++) {
+        	    			String q="0";
+        	    	
+        	    			q=q+z;
+        	    			b1=Double.parseDouble(q);
+        	    		}
+        	    	}
+        	    	if(s.charAt(i)=='+') {
+        	    		double sum=a1+b1;
+        	    		T1.setText(""+sum);
+        	    	}
+        	    	if(s.charAt(i)=='*') {
+        	    		double mul=a1*b1;
+        	    		T1.setText(""+mul);
+        	    	}
+        	    	if(s.charAt(i)=='-') {
+        	    		double sub=a1-b1;
+        	    		T1.setText(""+sub);
+        	    	}
+        	    	if(s.charAt(i)=='/') {
+        	    		double div=a1/b1;
+        	    		T1.setText(""+div);
+        	    	}
+        	    	if(s.charAt(i)=='^') {
+        	    		double n3=Math.pow(a1, b1);
+        	    		T1.setText(""+n3);
+        	    	}
+        	    	
+        	    }
+            }  ;  
+        }  
+        }); 
+    
+    B5.addActionListener(new ActionListener(){  
+        public void actionPerformed(ActionEvent e){  
+        	if (e.getSource() == B5)  
+            {  
+                
+                T1.setText(T1.getText()+"1");  
+            };  
+        }  
+        }); 
+    
+    
+    B6.addActionListener(new ActionListener(){  
+        public void actionPerformed(ActionEvent e){  
+        	if (e.getSource() == B6)  
+            {  
+       
+                T1.setText(T1.getText() + 2);  
+            }  ;  
+        }  
+        }); 
+    
+    B7.addActionListener(new ActionListener(){  
+        public void actionPerformed(ActionEvent e){  
+        	if (e.getSource() == B7)  
+            {  
+        		
+                T1.setText(T1.getText()+ 3);  
+            }  ;  
+        }  
+        }); 
+    
+    B8.addActionListener(new ActionListener(){  
+        public void actionPerformed(ActionEvent e){  
+        	if (e.getSource() == B8)  
+            {  
+        		
+                T1.setText(T1.getText() + 4);  
+            }  ;  
+        }  
+        }); 
+    
+    B9.addActionListener(new ActionListener(){  
+        public void actionPerformed(ActionEvent e){  
+        	if (e.getSource() == B9)  
+            {  
+        		
+                T1.setText(T1.getText() + 5);  
+            }  ;  
+        }  
+        }); 
+    
+    B10.addActionListener(new ActionListener(){  
+        public void actionPerformed(ActionEvent e){  
+        	if (e.getSource() == B10)  
+            {  
+        		
+                T1.setText(T1.getText()+ 6);  
+            }  ;  
+        }  
+        }); 
+    
+    B11.addActionListener(new ActionListener(){  
+        public void actionPerformed(ActionEvent e){  
+        	if (e.getSource() == B11)  
+            {  
+        		
+                T1.setText(T1.getText() + 7);  
+            }  ;  
+        }  
+        }); 
+    
+    B12.addActionListener(new ActionListener(){  
+        public void actionPerformed(ActionEvent e){  
+        	if (e.getSource() == B12)  
+            {  
+                T1.setText(T1.getText() + 8);  
+            }  ;  
+        }  
+        }); 
+    
+    B13.addActionListener(new ActionListener(){  
+        public void actionPerformed(ActionEvent e){  
+        	if (e.getSource() == B13)  
+            {  
+        		
+                T1.setText(T1.getText()+ 9);  
+            }  ;  
+        }  
+        }); 
+    
+
+    
+    B14.addActionListener(new ActionListener(){  
+        public void actionPerformed(ActionEvent e){  
+        	if (e.getSource() == B14)  
+            {  
+        		
+                T1.setText(T1.getText()+0);  
+            }  ;  
+        }  
+        }); 
+    
+  }
+  
+
+  
+    public static void main(String [] args)  
+    { 
+	  calcapp k=new calcapp();
+  }
+    
+    
+}
