@@ -1,4 +1,5 @@
 import javax.swing.*;
+
 import java.awt.*;
 import java.util.*;
 import java.io.IOException;
@@ -16,18 +17,27 @@ public class calcapp extends JFrame  {
 	 this.setLayout(layout);
     JFrame f = new JFrame("Calculator app"); 
     JPanel p=new JPanel();
-    f.setSize(480,250); 
-    f.setVisible(true);
     f.add(p);
-    p.setBackground(Color.cyan);
-    JTextField T1 = new JTextField(45);
+    f.pack();
+    f.setVisible(true);
+    f.setSize(480,300);
+    f.setDefaultCloseOperation(HIDE_ON_CLOSE);
+    f.setResizable(false);
+    
+    
+    p.setBackground(Color.lightGray);
+    JTextField T1 = new JTextField(15);
     JTextField T2 = new JTextField(45);
     JTextField T3 = new JTextField(45);
-    JLabel L1 = new JLabel("FIRST NUM : ");  
+    JLabel L1 = new JLabel("Calculate ? ");  
     JLabel L2 = new JLabel("SECOND NUM : ");
     JLabel L3 = new JLabel("Result is : ");
+    L1.setFont(L1.getFont().deriveFont(15f));
+    T1.setFont(T1.getFont().deriveFont(35f));
     p.add(L1);
     p.add(T1);
+ 
+   // p.repaint();
     JButton B1 = new JButton("+"); 
     JButton B2 = new JButton("-");
     JButton B3 = new JButton("*");
@@ -58,7 +68,7 @@ public class calcapp extends JFrame  {
     B3.setBackground(Color.ORANGE);
     B4.setBackground(Color.PINK);
     B15.setBackground(Color.BLACK);
-    B15.setForeground(Color.white);
+    B15.setForeground(Color.WHITE);
     B2.setForeground(Color.white);
     B1.setForeground(Color.white);
     B3.setForeground(Color.white);
@@ -96,10 +106,13 @@ public class calcapp extends JFrame  {
     p.add(B20);
     p.add(B16);
     p.add(B17);
+    
     p.add(B18);
     p.add(B19);
    // p.add(L3);
 //    p.add(T3);
+    p.revalidate();
+    T3.setText("0");
     B1.addActionListener(new ActionListener(){  
         public void actionPerformed(ActionEvent e){ 
         	
@@ -107,6 +120,14 @@ public class calcapp extends JFrame  {
             {  
                 T1.setText(T1.getText()+"+");  
             }  ;
+            try {
+            	if(T1.getText().charAt(0)=='+') {
+            		throw new Exception();
+            	}
+            }
+            catch(Exception ke){
+            	JOptionPane.showMessageDialog(f,"No value provided to add");
+            }
         }
         }); 
     B2.addActionListener(new ActionListener(){  
@@ -114,8 +135,17 @@ public class calcapp extends JFrame  {
         	if (e.getSource() == B2)  
             {  
                 T1.setText(T1.getText()+"-");  
-            }  ;  
-        }  
+            }  ;
+            try {
+            	if(T1.getText().charAt(0)=='-') {
+            		throw new Exception();
+            	}
+            }
+            catch(Exception ke){
+            	JOptionPane.showMessageDialog(f,"No value provided to Subtract");
+            }
+        }
+              
         }); 
     B3.addActionListener(new ActionListener(){  
         public void actionPerformed(ActionEvent e){  
@@ -123,8 +153,17 @@ public class calcapp extends JFrame  {
             {  
                  
                 T1.setText(T1.getText()+"*");  
-            }  ;  
-        }  
+            }  ;
+            try {
+            	if(T1.getText().charAt(0)=='*') {
+            		throw new Exception();
+            	}
+            }
+            catch(Exception ke){
+            	JOptionPane.showMessageDialog(f,"No value provided to multiply");
+            }
+        }
+          
         }); 
     
     B4.addActionListener(new ActionListener(){  
@@ -133,7 +172,15 @@ public class calcapp extends JFrame  {
             {  
                 T1.setText(T1.getText()+ "/");  
             }  ;  
-        }  
+            try {
+            	if(T1.getText().charAt(0)=='/') {
+            		throw new Exception();
+            	}
+            }
+            catch(Exception ke){
+            	JOptionPane.showMessageDialog(f,"No value provided to Divide");
+            }
+        } 
         }); 
     B20.addActionListener(new ActionListener(){  
         public void actionPerformed(ActionEvent e){  
@@ -153,39 +200,71 @@ public class calcapp extends JFrame  {
         }); 
     B16.addActionListener(new ActionListener(){  
         public void actionPerformed(ActionEvent e){  
+        	try {
         	if (e.getSource() == B16)  
             {  
-        		int n1=Integer.parseInt(T1.getText());
-        		int sqr=n1*n1;
-                T1.setText(""+sqr);  
+        		double n1=Double.parseDouble(T1.getText());
+        		double n3=Math.pow(n1, 2);
+
+	    		T1.setText(""+n3);  
             }  ;  
+            
+                if(T1.getText()=="") {
+                	throw new Exception();
+                }
+                }
+                catch(Exception kr) {
+                	JOptionPane.showMessageDialog(f,"No value provided to Calculate");
+                }
         }  
         }); 
     
     B18.addActionListener(new ActionListener(){  
-        public void actionPerformed(ActionEvent e){  
+        public void actionPerformed(ActionEvent e){ 
+        	try {
         	if (e.getSource() == B18)  
             {  
         		
                 T1.setText(T1.getText()+"^");  
-            }  ;  
+            }  ;
+            
+            if(T1.getText()=="") {
+            	throw new Exception();
+            }
+            }
+            catch(Exception kr) {
+            	JOptionPane.showMessageDialog(f,"No value provided to Calculate");
+            }
+            
         }  
         }); 
     
     
     B17.addActionListener(new ActionListener(){  
-        public void actionPerformed(ActionEvent e){  
+        public void actionPerformed(ActionEvent e){ 
+        	try {
         	if (e.getSource() == B17)  
             {  
-        		int n1=Integer.parseInt(T1.getText());
-        		double sqrt=Math.sqrt(n1);
-                T1.setText(""+sqrt);  
-            }  ;  
+        		
+        		double n1=Double.parseDouble(T1.getText());
+        		double sqrt1=Math.sqrt(n1);
+                T1.setText(""+sqrt1);  
+            } ; 
+            
+                if(T1.getText()=="") {
+                	throw new Exception();
+                }
+                }
+                catch(Exception kr) {
+                	JOptionPane.showMessageDialog(f,"No value provided to Calculate");
+                }
+            
         }  
         }); 
     
     B15.addActionListener(new ActionListener(){  
-        public void actionPerformed(ActionEvent e){  
+        public void actionPerformed(ActionEvent e){ 
+        	
         	if (e.getSource() == B15)  
             {  
         		s=T1.getText();
@@ -225,11 +304,12 @@ public class calcapp extends JFrame  {
         	    	}
         	    	if(s.charAt(i)=='^') {
         	    		double n3=Math.pow(a1, b1);
-        	    		T1.setText(""+n3);
+        	    		int n4 = (int) n3;
+        	    		T1.setText(""+n4);
         	    	}
-        	    	
         	    }
-            }  ;  
+        	    	
+            } ;  
         }  
         }); 
     
@@ -238,8 +318,10 @@ public class calcapp extends JFrame  {
         	if (e.getSource() == B5)  
             {  
                 
-                T1.setText(T1.getText()+"1");  
-            };  
+        		
+                T1.setText(T1.getText()+1);  
+            };
+            
         }  
         }); 
     
@@ -338,7 +420,6 @@ public class calcapp extends JFrame  {
   }
   
 
-  
     public static void main(String [] args)  
     { 
 	  calcapp k=new calcapp();
